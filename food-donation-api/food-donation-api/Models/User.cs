@@ -10,7 +10,6 @@ namespace food_donation_api.Models
     {
         [Key]
         [Required]
-
         public string Email { get; set; }
         [Required]
         [MaxLength(11)]
