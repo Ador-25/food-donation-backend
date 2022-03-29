@@ -9,6 +9,7 @@ namespace food_donation_api.Data
 {
     public class SqlOrganizationData : IOrganizationData
     {
+
         public List<Organization> GetNearbyOrganizations(LocationFormat locationFormat)
         {
             throw new NotImplementedException();
