@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace food_donation_api.Data
 {
     public class SqlOrganizationData : IOrganizationData
@@ -24,17 +25,21 @@ namespace food_donation_api.Data
 
         public List<Organization> GetNearbyOrganizations(LocationFormat locationFormat)
         {
-            throw new NotImplementedException();
+            return _applicationDbContext.Organization.
+                Where(ul => ul.GoogleLocation.DistanceFrom(locationFormat) <= 2).ToList();
         }
 
         public Organization GetOrganization(string email)
         {
-            throw new NotImplementedException();
+            var find = _applicationDbContext.Organization.Find(email);
+            return find;
         }
 
         public List<Organization> GetOrganizationsByName(string organizationName)
         {
-            throw new NotImplementedException();
+            return _applicationDbContext.Organization
+                .Where(org => org.OrganizationName.Contains(organizationName))
+                .ToList();
         }
     }
 }
