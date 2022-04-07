@@ -15,7 +15,9 @@ namespace food_donation_api.Models
         [MaxLength(11)]
         [MinLength(11)]
         public string PhoneNumber { get; set; }
+        [Required]
         public string FullName { get; set; } = string.Empty;
+        public string  Password { get; set; }
         public IList<UserDonatesOrganization> UserDonatesOrganizations { get; set; }
 
     }

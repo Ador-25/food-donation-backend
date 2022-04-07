@@ -1,4 +1,5 @@
 using food_donation_api.Connection;
+using food_donation_api.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,8 @@ namespace food_donation_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.AddScoped<IUserData, SqlUserData>();
+            services.AddScoped<IOrganizationData, SqlOrganizationData>();
 
             // For Entity Framework 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FoodDonationDb")));

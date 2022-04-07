@@ -1,4 +1,5 @@
-﻿using food_donation_api.Models;
+﻿using food_donation_api.Helper;
+using food_donation_api.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,6 +18,7 @@ namespace food_donation_api.Connection
         public DbSet<User> User { get; set; }
         public DbSet<Organization> Organization { get; set; }
         public DbSet <UserDonatesOrganization> UserDonatesOrganization { get; set; }
+        public DbSet <LocationFormat> Location { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //

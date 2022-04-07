@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using food_donation_api.Connection;
 
 namespace food_donation_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220407022004_passwordsaver")]
+    partial class passwordsaver
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,30 +217,10 @@ namespace food_donation_api.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("food_donation_api.Helper.LocationFormat", b =>
-                {
-                    b.Property<Guid>("LocationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("Lat")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Long")
-                        .HasColumnType("float");
-
-                    b.HasKey("LocationId");
-
-                    b.ToTable("Location");
-                });
-
             modelBuilder.Entity("food_donation_api.Models.Organization", b =>
                 {
                     b.Property<string>("OrganizationEmail")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid?>("GoogleLocationLocationId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -253,17 +235,12 @@ namespace food_donation_api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
                     b.HasKey("OrganizationEmail");
-
-                    b.HasIndex("GoogleLocationLocationId");
 
                     b.ToTable("Organization");
                 });
@@ -274,7 +251,6 @@ namespace food_donation_api.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -363,15 +339,6 @@ namespace food_donation_api.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("food_donation_api.Models.Organization", b =>
-                {
-                    b.HasOne("food_donation_api.Helper.LocationFormat", "GoogleLocation")
-                        .WithMany()
-                        .HasForeignKey("GoogleLocationLocationId");
-
-                    b.Navigation("GoogleLocation");
                 });
 
             modelBuilder.Entity("food_donation_api.Models.UserDonatesOrganization", b =>

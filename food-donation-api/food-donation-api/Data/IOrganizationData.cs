@@ -15,5 +15,7 @@ namespace food_donation_api.Data
         Organization GetOrganization(string email);
         // Get list of Organizations for a name
         List<Organization> GetOrganizationsByName(string organizationName);
+
+        Organization AddOrganization(Organization organization);
     }
 }

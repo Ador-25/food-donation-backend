@@ -1,4 +1,5 @@
-﻿using System;
+﻿using food_donation_api.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace food_donation_api.Models
         [Required]
         public string Location { get; set; }
         [Required]
+        public LocationFormat GoogleLocation { get; set; }
+        [Required]
         [MaxLength(11)]
         [MinLength(11)]
         public string PhoneNumber { get; set; }
@@ -24,6 +27,7 @@ namespace food_donation_api.Models
         [MinLength(16)]
         [MaxLength(16)]
         public string OrganizationCode { get; set; }
+        public string Password { get; set; }
         public IList<UserDonatesOrganization> UserDonatesOrganizations { get; set; }
 
 
