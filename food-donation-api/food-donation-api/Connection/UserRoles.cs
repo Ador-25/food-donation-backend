@@ -11,4 +11,5 @@ namespace food_donation_api.Connection
         public const string Admin = "Admin";
         public const string Organization = "Organization";
     }
+
 }

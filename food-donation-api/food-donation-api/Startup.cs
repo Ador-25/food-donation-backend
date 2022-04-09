@@ -39,9 +39,10 @@ namespace food_donation_api
 
             // For Entity Framework 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FoodDonationDb")));
+            services.AddDbContext<UserDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AuthFoodDonationDb")));
             // For Identity  
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<UserDbContext>()
                 .AddDefaultTokenProviders();
 
             // Adding Authentication  

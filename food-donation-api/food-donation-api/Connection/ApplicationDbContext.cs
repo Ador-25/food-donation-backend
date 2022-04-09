@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace food_donation_api.Connection
 {
-    public class ApplicationDbContext:IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext:DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

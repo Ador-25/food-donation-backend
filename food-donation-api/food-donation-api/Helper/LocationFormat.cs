@@ -35,7 +35,7 @@ namespace food_donation_api.Helper
 
             // calculate the result
             return (c * r);
-            return 0;
+           
         }
         private double toRadians(
            double angleIn10thofaDegree)

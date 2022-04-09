@@ -28,11 +28,6 @@ namespace food_donation_api.Controllers
         private readonly IConfiguration _configuration;
         IUserData _userData;
         IOrganizationData _organizationData;
-
-
-
-
-
         public AuthenticateController(IOrganizationData organizationData,IUserData userData, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             this.userManager = userManager;

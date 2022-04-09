@@ -10,12 +10,14 @@ namespace food_donation_api.Data
     public class SqlUserData : IUserData
     {
         ApplicationDbContext _applicationDbContext;
+
         public SqlUserData(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
         }
         public User AddUser(User user)
         {
+            user.Password = null;
             _applicationDbContext.User.Add(user);
             _applicationDbContext.SaveChanges();
             return user;

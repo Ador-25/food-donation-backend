@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yGIZPDhtbb6hA9KX75YQbHQzNX8RUG+KzK8SQWIF7gO3tZm94TLesgxfvmstnwAhsb3vjdyeOaWKPM4sjeeYsg==",
+  "dgSpecHash": "JDHCus14kwTVX11AD229MAF2AO4Aj/7cGqEDLZBocdytSTNv2xh+ZETJAD4hTtbTAZkgFtBMctih3TxFr4jo9w==",
   "success": true,
   "projectFilePath": "D:\\My Projects\\food-donation-backend\\food-donation-api\\food-donation-api\\food-donation-api.csproj",
   "expectedPackageFiles": [
@@ -131,7 +131,8 @@
     "C:\\Users\\Ador\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Ador\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Ador\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Ador\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\Ador\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\Ador\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.15\\microsoft.netcore.app.host.win-x64.5.0.15.nupkg.sha512"
   ],
   "logs": []
 }
