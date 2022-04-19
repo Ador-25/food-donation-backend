@@ -130,7 +130,7 @@ namespace food_donation_api.Controllers
                 await userManager.AddToRoleAsync(user, UserRoles.Organization);
             }
 
-            model.GoogleLocation.LocationId = new Guid();
+            //model.GoogleLocation.LocationId = new Guid();
             _organizationData.AddOrganization(model);
             return Ok(new Response { Status = "Success", Message = "Organiztion created successfully!" });
         }

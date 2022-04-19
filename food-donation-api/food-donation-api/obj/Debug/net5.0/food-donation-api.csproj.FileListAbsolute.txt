@@ -61,5 +61,6 @@ D:\My Projects\food-donation-backend\food-donation-api\food-donation-api\obj\Deb
 D:\My Projects\food-donation-backend\food-donation-api\food-donation-api\obj\Debug\net5.0\ref\food-donation-api.dll
 D:\My Projects\food-donation-backend\food-donation-api\food-donation-api\obj\Debug\net5.0\food-donation-api.pdb
 D:\My Projects\food-donation-backend\food-donation-api\food-donation-api\obj\Debug\net5.0\food-donation-api.genruntimeconfig.cache
-D:\My Projects\food-donation-backend\food-donation-api\food-donation-api\obj\Debug\net5.0\food-donation-api.csproj.AssemblyReference.cache
-D:\My Projects\food-donation-backend\food-donation-api\food-donation-api\obj\Debug\net5.0\refint\food-donation-api.dll
+D:\My Projects\food-donation-backend\food-donation-api\food-donation-api\bin\Debug\net5.0\ref\food-donation-api.dll
+D:\My Projects\food-donation-backend\food-donation-api\food-donation-api\obj\Debug\net5.0\staticwebassets\food-donation-api.StaticWebAssets.xml
+D:\My Projects\food-donation-backend\food-donation-api\food-donation-api\obj\Debug\net5.0\food-donation-api.csprojAssemblyReference.cache

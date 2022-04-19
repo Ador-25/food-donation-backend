@@ -20,6 +20,7 @@ namespace food_donation_api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("http://*:8080");
                     webBuilder.UseStartup<Startup>();
                 });
     }

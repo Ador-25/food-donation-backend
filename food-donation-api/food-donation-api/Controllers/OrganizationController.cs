@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using food_donation_api.Connection;
+using food_donation_api.Data;
+using food_donation_api.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,23 +16,42 @@ namespace food_donation_api.Controllers
     public class OrganizationController : ControllerBase
     {
         // GET: api/<OrganizationController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        IOrganizationData _organizationData;
+        public OrganizationController(IOrganizationData organizationData)
         {
-            return new string[] { "value1", "value2" };
+
+            _organizationData = organizationData;
+
+
+        }
+        [HttpGet]
+        public IActionResult Get()
+        {
+   
+            return Ok(_organizationData.GetOrganizations());
         }
 
         // GET api/<OrganizationController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("near-organizations/{lon}/{lat}")]
+        public IActionResult GetNearbyOrganizations(double lon,double lat)
         {
-            return "value";
+            GoogleLocation g = new GoogleLocation();
+            g.Long = lon;
+            g.Lat = lat;
+            return Ok(_organizationData.GetNearbyOrganizations(g));
         }
 
         // POST api/<OrganizationController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Organization organization)
         {
+            var org=
+            _organizationData.AddOrganization(organization);
+            if (org != null)
+            {
+                return Ok(new Response { Status = "Ok", Message = "Organization Created Successfully" });
+            }
+            return Ok(new Response { Status = "Error", Message = "Can not sign up" });
         }
 
         // PUT api/<OrganizationController>/5
@@ -43,5 +65,10 @@ namespace food_donation_api.Controllers
         public void Delete(int id)
         {
         }
+    }
+    class Person
+    {
+        public int id { get; set; }
+        public string name { get; set; }
     }
 }

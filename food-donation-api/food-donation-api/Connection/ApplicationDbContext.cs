@@ -18,7 +18,7 @@ namespace food_donation_api.Connection
         public DbSet<User> User { get; set; }
         public DbSet<Organization> Organization { get; set; }
         public DbSet <UserDonatesOrganization> UserDonatesOrganization { get; set; }
-        public DbSet <LocationFormat> Location { get; set; }
+        //public DbSet <GoogleLocation> Location { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //
@@ -31,9 +31,18 @@ namespace food_donation_api.Connection
                 .HasOne<Organization>(ud => ud.Organization)
                 .WithMany(u => u.UserDonatesOrganizations)
                 .HasForeignKey(ud => ud.Email);
-
-
             base.OnModelCreating(modelBuilder);
+            /*modelBuilder.Entity<Organization>()
+                .HasOne(u => u.GoogleLocation)
+                .WithOne(u => u.Organization)
+                .HasForeignKey<GoogleLocation>(gl => gl.OrganizationEmail);/*
+
+            /*
+            modelBuilder.Entity<Organization>()
+                .HasOne<LocationFormat>(u => u.GoogleLocation);
+            modelBuilder.Entity<LocationFormat>()
+                .HasOne<Organization>(u => u.Organization);*/
+
         }
     }
 }

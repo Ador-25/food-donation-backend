@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using food_donation_api.Connection;
 
 namespace food_donation_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220417104327_locationMigration")]
+    partial class locationMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,20 +21,38 @@ namespace food_donation_api.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("food_donation_api.Models.GoogleLocation", b =>
+                {
+                    b.Property<Guid>("LocationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Lat")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Long")
+                        .HasColumnType("float");
+
+                    b.Property<string>("OrganizationEmail")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LocationId");
+
+                    b.HasIndex("OrganizationEmail")
+                        .IsUnique()
+                        .HasFilter("[OrganizationEmail] IS NOT NULL");
+
+                    b.ToTable("Location");
+                });
+
             modelBuilder.Entity("food_donation_api.Models.Organization", b =>
                 {
                     b.Property<string>("OrganizationEmail")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<double>("Lat")
-                        .HasColumnType("float");
-
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Long")
-                        .HasColumnType("float");
 
                     b.Property<string>("OrganizationCode")
                         .IsRequired()
@@ -102,6 +122,15 @@ namespace food_donation_api.Migrations
                     b.ToTable("UserDonatesOrganization");
                 });
 
+            modelBuilder.Entity("food_donation_api.Models.GoogleLocation", b =>
+                {
+                    b.HasOne("food_donation_api.Models.Organization", "Organization")
+                        .WithOne("GoogleLocation")
+                        .HasForeignKey("food_donation_api.Models.GoogleLocation", "OrganizationEmail");
+
+                    b.Navigation("Organization");
+                });
+
             modelBuilder.Entity("food_donation_api.Models.UserDonatesOrganization", b =>
                 {
                     b.HasOne("food_donation_api.Models.Organization", "Organization")
@@ -123,6 +152,9 @@ namespace food_donation_api.Migrations
 
             modelBuilder.Entity("food_donation_api.Models.Organization", b =>
                 {
+                    b.Navigation("GoogleLocation")
+                        .IsRequired();
+
                     b.Navigation("UserDonatesOrganizations");
                 });
 

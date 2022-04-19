@@ -1,4 +1,5 @@
-﻿using System;
+﻿using food_donation_api.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,11 +10,13 @@ namespace food_donation_api.Helper
     public class LocationFormat
     {
         [Key]
-        public Guid LocationId { get; set; } = new Guid();
+        public Guid LocationId { get; set; } = Guid.NewGuid();
         [Required]
         public double Lat { get; set; }
         [Required]
         public double Long { get; set; }
+        public Organization Organization { get; set; }
+        public string OrganizationEmail { get; set; }
         public double DistanceFrom(LocationFormat temp)
         {
             double lon1 = toRadians(this.Long);
