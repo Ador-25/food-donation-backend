@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using food_donation_api.Connection;
+using food_donation_api.Data;
+using food_donation_api.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +16,11 @@ namespace food_donation_api.Controllers
     [ApiController]
     public class UserDonatesOrganizationController : ControllerBase
     {
+        private IUserDonatesOrganizationData _iData;
+        public UserDonatesOrganizationController(IUserDonatesOrganizationData iData)
+        {
+            _iData = iData;
+        }
         // GET: api/<UserDonatesOrganizationController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -27,9 +36,29 @@ namespace food_donation_api.Controllers
         }
 
         // POST api/<UserDonatesOrganizationController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("new-req")]
+        [Authorize("User")] //"Admin"
+        public IActionResult NewRequest([FromBody] UserDonatesOrganization  userDonatesOrganization)
         {
+            var find = User.Identity.Name;
+            userDonatesOrganization.User.Email=find;
+            return Ok(
+            _iData.NewDonation(userDonatesOrganization)!=null? 
+            new Response { Status="Ok", Message= "Request Success"}
+            : new Response { Status = "Error", Message = "Request Error" });
+
+        }
+
+
+        [HttpPut("accept-req/{id}")]
+        [Authorize("Admin")] //"Admin"
+        public IActionResult AcceptRequest(Guid id)
+        {
+            
+            return Ok(_iData.AcceptDonation(id) != null ?
+            new Response { Status = "Ok", Message = "Request Success" }
+            : new Response { Status = "Error", Message = "Request Error" });
+
         }
 
         // PUT api/<UserDonatesOrganizationController>/5

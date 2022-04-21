@@ -60,7 +60,10 @@ namespace food_donation_api.Data
 
         public UserDonatesOrganization NewDonation(UserDonatesOrganization userDonatesOrganization)
         {
-            userDonatesOrganization.DonationId = new Guid();
+            var user = _applicationDbContext.User.Find(userDonatesOrganization.User.Email);
+            if (user == null)
+                return null;
+            userDonatesOrganization.DonationId = Guid.NewGuid();
             _applicationDbContext.UserDonatesOrganization.Add(userDonatesOrganization);
             _applicationDbContext.SaveChanges();
             return userDonatesOrganization;
